@@ -16,7 +16,7 @@ module Sensu
       def initialize(options={})
         create_command_methods!
         @host = options[:host] || "127.0.0.1"
-        @port = options[:port] || 6379
+        @port = (options[:port] || 6379).to_i
         @db = options[:db]
         @password = options[:password]
         @auto_reconnect = options.fetch(:auto_reconnect, true)
@@ -102,7 +102,7 @@ module Sensu
               if ip_address.nil?
                 reconnect!
               else
-                reconnect(ip_address, port)
+                reconnect(ip_address, port.to_i)
               end
             end
           end
