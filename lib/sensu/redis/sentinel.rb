@@ -25,7 +25,7 @@ module Sensu
       def connect_to_sentinel(options={})
         options[:host] ||= "127.0.0.1"
         options[:port] ||= 26379
-        EM.connect(options[:host], options[:port], Client, options)
+        EM.connect(options[:host], options[:port].to_i, Client, options)
       end
 
       # Connect to all Sentinel instances. This method defaults the
