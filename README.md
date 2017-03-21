@@ -1,6 +1,8 @@
 # Sensu::Redis
 
 [![Build Status](https://travis-ci.org/sensu/sensu-redis.svg?branch=master)](https://travis-ci.org/sensu/sensu-redis)
+![Gem Version](https://img.shields.io/gem/v/sensu-redis.svg)
+![MIT Licensed](https://img.shields.io/github/license/sensu/sensu.svg)
 
 ## Installation
 
@@ -28,8 +30,3 @@ not nor will not require.
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
-
-## License
-
-Sensu-Redis is released under the [MIT
-license](https://raw.github.com/sensu/sensu-redis/master/LICENSE.txt).
