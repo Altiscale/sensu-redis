@@ -65,15 +65,18 @@ module Sensu
       end
 
       # Create an error and pass it to the connection error callback.
-      # This method will trigger a reconnect if `@reconnect_on_error`
-      # is `true`.
+      # This method will close the current connection and trigger a
+      # reconnect (via `unbind()`) if `@reconnect_on_error` is `true`.
+      # Closing the connection here is necessary to stop EventMachine
+      # from reusing the same connection handler (we want a fresh
+      # Redis connection).
       #
       # @param klass [Class]
       # @param message [String]
       def error(klass, message)
         redis_error = klass.new(message)
         @error_callback.call(redis_error)
-        reconnect! if @reconnect_on_error
+        close_connection if @reconnect_on_error
       end
 
       # Determine if the connection is connected to Redis.
