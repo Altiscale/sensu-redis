@@ -7,4 +7,4 @@ rvm:
   - jruby-9.1.7.0
 services:
   - redis
-script: "bundle exec rspec . --tag ~sentinel"
+script: "bundle exec rspec . --tag ~sentinel --tag ~tls"
