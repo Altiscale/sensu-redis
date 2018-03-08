@@ -47,4 +47,15 @@ describe "Sensu::Redis" do
       end
     end
   end
+
+  it "can connect to a redis instance with TLS", :tls => true do
+    async_wrapper do
+      Sensu::Redis.connect(:port => 6380, :tls => {}) do |redis|
+        redis.callback do
+          expect(redis.connected?).to eq(true)
+          async_done
+        end
+      end
+    end
+  end
 end
