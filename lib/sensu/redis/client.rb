@@ -19,6 +19,7 @@ module Sensu
         @port = (options[:port] || 6379).to_i
         @db = options[:db]
         @password = options[:password]
+        @tls = options[:tls] || options[:ssl]
         @auto_reconnect = options.fetch(:auto_reconnect, true)
         @reconnect_on_error = options.fetch(:reconnect_on_error, true)
         @error_callback = Proc.new {}
@@ -264,12 +265,14 @@ module Sensu
       end
 
       # This method is called by EM when the connection is
-      # established. This method is reponsible for validating the
-      # connection before Redis commands can be sent.
+      # established. This method is reponsible for upgrading to TLS if
+      # necessary and validating the connection before Redis commands
+      # can be sent.
       def connection_completed
         @response_callbacks = []
         @multibulk_count = false
         @connected = true
+        start_tls(@tls) unless @tls.nil?
         authenticate do
           select_db
           verify_version do
