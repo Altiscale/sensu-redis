@@ -1,8 +1,7 @@
 # Change Log
 
-## [Unreleased](https://github.com/sensu/sensu-redis/tree/HEAD)
-
-[Full Changelog](https://github.com/sensu/sensu-redis/compare/v2.2.1...HEAD)
+## [v2.3.0](https://github.com/sensu/sensu-redis/tree/v2.3.0) (2018-03-09)
+[Full Changelog](https://github.com/sensu/sensu-redis/compare/v2.2.1...v2.3.0)
 
 **Merged pull requests:**
 
