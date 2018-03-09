@@ -283,6 +283,20 @@ module Sensu
         end
       end
 
+      # This method is called by EM when the SSL/TLS handshake has
+      # been completed, as a result of calling #start_tls to initiate
+      # SSL/TLS on the connection. Log when the TLS handshake is
+      # complete.
+      def ssl_handshake_completed
+        if @logger
+          @logger.debug("redis tls handshake complete", {
+            :host => @host,
+            :port => @port,
+            :tls => @tls
+          })
+        end
+      end
+
       # Begin a multi bulk response array for an expected number of
       # responses. Using this method causes `dispatch_response()` to
       # wait until all of the expected responses have been added to
