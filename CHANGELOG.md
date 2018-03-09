@@ -1,5 +1,21 @@
 # Change Log
 
+## [Unreleased](https://github.com/sensu/sensu-redis/tree/HEAD)
+
+[Full Changelog](https://github.com/sensu/sensu-redis/compare/v2.2.1...HEAD)
+
+**Merged pull requests:**
+
+- Support TLS encrypted Redis connections [\#20](https://github.com/sensu/sensu-redis/pull/20) ([portertech](https://github.com/portertech))
+
+## [v2.2.1](https://github.com/sensu/sensu-redis/tree/v2.2.1) (2018-03-08)
+[Full Changelog](https://github.com/sensu/sensu-redis/compare/v2.2.0...v2.2.1)
+
+**Merged pull requests:**
+
+- Sign the sensu-redis Ruby gem [\#19](https://github.com/sensu/sensu-redis/pull/19) ([portertech](https://github.com/portertech))
+- Implement automated changelog generation [\#18](https://github.com/sensu/sensu-redis/pull/18) ([cwjohnston](https://github.com/cwjohnston))
+
 ## [v2.2.0](https://github.com/sensu/sensu-redis/tree/v2.2.0) (2017-06-14)
 [Full Changelog](https://github.com/sensu/sensu-redis/compare/v2.1.1...v2.2.0)
 
