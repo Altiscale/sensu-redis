@@ -55,7 +55,8 @@ module Sensu
       "incr",
       "multi",
       "exec",
-      "publish"
+      "publish",
+      "keys"
     ].freeze
 
     # Redis commands.
