@@ -5,6 +5,8 @@ require "eventmachine"
 module Sensu
   module Redis
     class Sentinel
+      include Utilities
+
       attr_accessor :logger
 
       # Initialize the Sentinel connections. The default Redis master
