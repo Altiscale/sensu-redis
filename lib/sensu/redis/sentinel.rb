@@ -1,9 +1,12 @@
 require "sensu/redis/client"
+require "sensu/redis/utilities"
 require "eventmachine"
 
 module Sensu
   module Redis
     class Sentinel
+      include Utilities
+
       attr_accessor :logger
 
       # Initialize the Sentinel connections. The default Redis master
@@ -15,26 +18,35 @@ module Sensu
       #   connection settings.
       def initialize(options={})
         @master = options[:master_group] || options[:master] || "mymaster"
-        @sentinels = connect_to_sentinels(options[:sentinels])
+        @sentinels = []
+        connect_to_sentinels(options[:sentinels])
       end
 
-      # Connect to a Sentinel instance.
+      # Connect to a Sentinel instance and add the connection to
+      # `@sentinels` to be called upon. This method defaults the
+      # Sentinel host and port if either have not been set.
       #
       # @param options [Hash] containing the host and port.
-      # @return [Object] Sentinel connection.
       def connect_to_sentinel(options={})
         options[:host] ||= "127.0.0.1"
         options[:port] ||= 26379
-        EM.connect(options[:host], options[:port].to_i, Client, options)
+        resolve_host(options[:host]) do |ip_address|
+          if ip_address.nil?
+            EM::Timer.new(1) do
+              connect_to_sentinel(options)
+            end
+          else
+            @sentinels << EM.connect(ip_address, options[:port].to_i, Client, options)
+          end
+        end
       end
 
-      # Connect to all Sentinel instances. This method defaults the
-      # Sentinel host and port if either have not been set.
+      # Connect to all Sentinel instances. The Sentinel instance
+      # connections will be added to `@sentinels`.
       #
       # @param sentinels [Array]
-      # @return [Array] of Sentinel connection objects.
       def connect_to_sentinels(sentinels)
-        sentinels.map do |options|
+        sentinels.each do |options|
           connect_to_sentinel(options)
         end
       end
