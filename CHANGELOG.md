@@ -1,5 +1,12 @@
 # Change Log
 
+## [v2.4.0](https://github.com/sensu/sensu-redis/tree/v2.4.0) (2018-12-07)
+[Full Changelog](https://github.com/sensu/sensu-redis/compare/v2.3.0...v2.4.0)
+
+**Merged pull requests:**
+
+- Upfront DNS hostname resolution for Sentinel hosts [\#22](https://github.com/sensu/sensu-redis/pull/22) ([portertech](https://github.com/portertech))
+
 ## [v2.3.0](https://github.com/sensu/sensu-redis/tree/v2.3.0) (2018-03-09)
 [Full Changelog](https://github.com/sensu/sensu-redis/compare/v2.2.1...v2.3.0)
 
